@@ -5,8 +5,8 @@
 class Modelmux < Formula
   desc "High-performance proxy server converting OpenAI API requests to Vertex AI format"
   homepage "https://github.com/yarenty/modelmux"
-  url "https://github.com/yarenty/modelmux/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "05c1ed6868298287e9c33c058a57340a0aca676fadb0e135147f8692fac58b13"
+  url "https://github.com/yarenty/modelmux/archive/refs/tags/v1.1.0.tar.gz"
+  sha256 "822b245a29ef233573393c7272504406aaea503be05b0418de578c5f29663068"
   license any_of: ["MIT", "Apache-2.0"]
   head "https://github.com/yarenty/modelmux.git", branch: "main"
 
@@ -14,14 +14,15 @@ class Modelmux < Formula
 
   def install
     system "cargo", "install", *std_cargo_args
-    (var/"log").mkpath
   end
 
+  # ModelMux manages its own log files (daily rotation, 30-file retention
+  # ~= last month) under `~/Library/Logs/modelmux/` on macOS. We deliberately
+  # don't set `log_path` / `error_log_path` so brew services doesn't capture
+  # stdout/stderr into a single unbounded `var/log/modelmux.log`.
   service do
     run [opt_bin/"modelmux"]
     keep_alive true
-    log_path var/"log/modelmux.log"
-    error_log_path var/"log/modelmux.log"
   end
 
   def caveats
@@ -33,8 +34,14 @@ class Modelmux < Formula
         brew services start modelmux
 
       The service will use your config from:
-        ~/.config/modelmux/config.toml (Linux)
-        ~/Library/Application Support/modelmux/config.toml (macOS)
+        ~/.config/modelmux/config.toml (Linux & macOS)
+
+      Logs (daily rotation, 30-file retention ~= last month):
+        ~/Library/Logs/modelmux/modelmux.log.YYYY-MM-DD
+
+      Upgrading from <= 1.0.0 on macOS? Just run `modelmux` once — config is
+      migrated automatically from ~/Library/Application Support/com.SkyCorp.modelmux/
+      to ~/.config/modelmux/ (idempotent).
     EOS
   end
 
