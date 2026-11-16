@@ -14,7 +14,7 @@ then
 fi
 
 base="https://github.com/yarenty/kowalski/releases/download/${tag}"
-for target in aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
+for target in aarch64-apple-darwin x86_64-apple-darwin
 do
   sum="$(curl -fsSL "${base}/kowalski-${target}.tar.gz.sha256" | awk '{print $1}')"
   if [[ "${#sum}" -ne 64 ]]

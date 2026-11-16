@@ -6,7 +6,7 @@ Homebrew formulae by [yarenty](https://github.com/yarenty).
 
 ### kowalski
 
-**Kowalski** gives a local model jobs: pipelines of small steps (hordes) that run on your own machine. Installs the pre-built `kowalski` and `kowalski-cli` for macOS and Linux, Intel or ARM.
+**Kowalski** gives a local model jobs: pipelines of small steps (hordes) that run on your own machine. Installs the pre-built `kowalski` and `kowalski-cli` on a Mac, Apple Silicon or Intel (on Linux use the [installer](https://github.com/yarenty/kowalski#install)).
 
 - **Project**: [github.com/yarenty/kowalski](https://github.com/yarenty/kowalski)
 - **Site**: [kowalski.yarenty.com](https://kowalski.yarenty.com)
