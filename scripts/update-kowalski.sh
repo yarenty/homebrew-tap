@@ -6,7 +6,7 @@ set -euo pipefail
 formula="$(dirname "$0")/../Formula/kowalski.rb"
 tag="${1:-$(gh api repos/yarenty/kowalski/releases/latest -q .tag_name)}"
 version="${tag#v}"
-current="$(sed -n 's/^  version "\(.*\)"$/\1/p' "${formula}")"
+current="$(sed -n 's|.*/releases/download/v\([^/]*\)/.*|\1|p' "${formula}" | head -n 1)"
 if [[ "${current}" == "${version}" ]]
 then
   echo "kowalski formula already at ${version}"
@@ -29,7 +29,6 @@ do
     { print }' "${formula}" >"${formula}.tmp"
   mv "${formula}.tmp" "${formula}"
 done
-sed -i.bak -e "s|^  version \".*\"|  version \"${version}\"|" \
-  -e "s|/releases/download/v[^/]*/|/releases/download/${tag}/|" "${formula}"
+sed -i.bak -e "s|/releases/download/v[^/]*/|/releases/download/${tag}/|" "${formula}"
 rm "${formula}.bak"
 echo "kowalski formula: ${current} -> ${version}"

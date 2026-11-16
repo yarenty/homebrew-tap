@@ -5,7 +5,6 @@
 class Kowalski < Formula
   desc "Runs chores on your own machine with a local model, as pipelines of small steps"
   homepage "https://kowalski.yarenty.com"
-  version "2.6.1"
   license "MIT"
 
   on_macos do
