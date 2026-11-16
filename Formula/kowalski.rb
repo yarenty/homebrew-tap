@@ -10,13 +10,15 @@ class Kowalski < Formula
 
   depends_on :macos
 
-  on_arm do
-    url "https://github.com/yarenty/kowalski/releases/download/v2.6.1/kowalski-aarch64-apple-darwin.tar.gz"
-    sha256 "a251dfd9784eb62b8468af231f68bc034c46f2f135b3e950b15621fefac37d03"
-  end
-  on_intel do
-    url "https://github.com/yarenty/kowalski/releases/download/v2.6.1/kowalski-x86_64-apple-darwin.tar.gz"
-    sha256 "ada6c5a008dcb7d633bc91baed72c0e8763a5cbd15abf81fe6e2af9da9eddf6b"
+  on_macos do
+    on_arm do
+      url "https://github.com/yarenty/kowalski/releases/download/v2.6.1/kowalski-aarch64-apple-darwin.tar.gz"
+      sha256 "a251dfd9784eb62b8468af231f68bc034c46f2f135b3e950b15621fefac37d03"
+    end
+    on_intel do
+      url "https://github.com/yarenty/kowalski/releases/download/v2.6.1/kowalski-x86_64-apple-darwin.tar.gz"
+      sha256 "ada6c5a008dcb7d633bc91baed72c0e8763a5cbd15abf81fe6e2af9da9eddf6b"
+    end
   end
 
   def install
