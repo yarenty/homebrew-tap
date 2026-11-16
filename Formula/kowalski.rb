@@ -19,6 +19,8 @@ class Kowalski < Formula
   end
 
   on_linux do
+    depends_on "openssl@3"
+
     on_arm do
       url "https://github.com/yarenty/kowalski/releases/download/v2.6.1/kowalski-aarch64-unknown-linux-gnu.tar.gz"
       sha256 "be5a348b3713cb396ac21124c7aea0b51b8820b871555c96b1e38d33753c4455"
