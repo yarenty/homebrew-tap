@@ -1,5 +1,5 @@
-# Keeps Formula/kowalski.rb on the latest kowalski release: once a day, or by hand.
-name: update kowalski
+# Keeps the formulas on the latest release of their project: once a day, or by hand.
+name: update formulas
 
 on:
   schedule:
@@ -12,17 +12,25 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        formula: [kowalski, modelmux]
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Update the formula
         env:
           GH_TOKEN: ${{ github.token }}
-        run: scripts/update-kowalski.sh
+        run: scripts/update-${{ matrix.formula }}.sh
       - name: Commit
+        env:
+          FORMULA: ${{ matrix.formula }}
         run: |
           git diff --quiet && exit 0
-          version="$(sed -n 's|.*/releases/download/v\([^/]*\)/.*|\1|p' Formula/kowalski.rb | head -n 1)"
+          version="$(sed -n 's|.*/releases/download/v\([^/]*\)/.*|\1|p' "Formula/${FORMULA}.rb" | head -n 1)"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "kowalski $version"
+          git commit -am "${FORMULA} ${version}"
           git push

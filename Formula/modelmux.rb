@@ -5,15 +5,32 @@
 class Modelmux < Formula
   desc "High-performance proxy server converting OpenAI API requests to Vertex AI format"
   homepage "https://github.com/yarenty/modelmux"
-  url "https://github.com/yarenty/modelmux/archive/refs/tags/v1.3.5.tar.gz"
-  sha256 "313332a823b4d41e633930fcac8efaed74f358cd104e52751c2dee7e69c2e2a3"
   license any_of: ["MIT", "Apache-2.0"]
-  head "https://github.com/yarenty/modelmux.git", branch: "main"
 
-  depends_on "rust" => :build
+  on_macos do
+    on_arm do
+      url "https://github.com/yarenty/modelmux/releases/download/v1.3.5/modelmux-aarch64-apple-darwin.tar.gz"
+      sha256 "d889c5ace65e03bfab7d96cf0505f8c5caa3862ffba44ac48f4d4e4685757546"
+    end
+    on_intel do
+      url "https://github.com/yarenty/modelmux/releases/download/v1.3.5/modelmux-x86_64-apple-darwin.tar.gz"
+      sha256 "e2c62bccb0a8ae0703f0c177c6d3279f2c32fb6cc2db17fe7637234966ea2531"
+    end
+  end
+
+  on_linux do
+    on_arm do
+      url "https://github.com/yarenty/modelmux/releases/download/v1.3.5/modelmux-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "9d5cae1066db79fe3d52ec3245ee4f63aa6226e3d1e89193689f28b61e5252cb"
+    end
+    on_intel do
+      url "https://github.com/yarenty/modelmux/releases/download/v1.3.5/modelmux-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "488305d4e12f542c8aad020b8a5ac8335f97c2315eb262563c3093d2e57f47d4"
+    end
+  end
 
   def install
-    system "cargo", "install", *std_cargo_args
+    bin.install "modelmux"
   end
 
   # ModelMux manages its own log files (daily rotation, 30-file retention
