@@ -4,6 +4,21 @@ Homebrew formulae by [yarenty](https://github.com/yarenty).
 
 ## Formulae
 
+### kowalski
+
+**Kowalski** gives a local model jobs: pipelines of small steps (hordes) that run on your own machine. Installs the pre-built `kowalski` and `kowalski-cli` on a Mac, Apple Silicon or Intel (on Linux use the [installer](https://github.com/yarenty/kowalski#install)).
+
+- **Project**: [github.com/yarenty/kowalski](https://github.com/yarenty/kowalski)
+- **Site**: [kowalski.yarenty.com](https://kowalski.yarenty.com)
+- **License**: MIT
+
+**Install:**
+
+```bash
+brew install yarenty/tap/kowalski
+kowalski
+```
+
 ### modelmux
 
 **ModelMux** is a high-performance Rust proxy server that converts OpenAI-compatible API requests to Vertex AI (Anthropic Claude) format. Drop-in replacement for the OpenAI API with streaming, tool/function calling, and production-grade reliability.

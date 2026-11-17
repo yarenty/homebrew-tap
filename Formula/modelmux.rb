@@ -66,7 +66,6 @@ class Modelmux < Formula
 
     # Test configuration validation with minimal valid config
     # Create a minimal valid base64-encoded service account key JSON
-    require "base64"
     require "json"
     pk = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC\n" \
          "-----END PRIVATE KEY-----\n"
@@ -82,7 +81,7 @@ class Modelmux < Formula
       "token_uri"                   => "https://oauth2.googleapis.com/token",
       "type"                        => "service_account",
     }
-    key_b64 = Base64.strict_encode64(minimal_key.to_json)
+    key_b64 = [minimal_key.to_json].pack("m0")
 
     ENV["GCP_SERVICE_ACCOUNT_KEY"] = key_b64
     ENV["LLM_PROVIDER"] = "vertex"

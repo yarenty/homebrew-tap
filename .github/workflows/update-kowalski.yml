@@ -1,0 +1,28 @@
+# Keeps Formula/kowalski.rb on the latest kowalski release: once a day, or by hand.
+name: update kowalski
+
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update the formula
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/update-kowalski.sh
+      - name: Commit
+        run: |
+          git diff --quiet && exit 0
+          version="$(sed -n 's|.*/releases/download/v\([^/]*\)/.*|\1|p' Formula/kowalski.rb | head -n 1)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "kowalski $version"
+          git push
