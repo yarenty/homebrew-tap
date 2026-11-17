@@ -9,23 +9,23 @@ class Modelmux < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/yarenty/modelmux/releases/download/v1.3.5/modelmux-aarch64-apple-darwin.tar.gz"
-      sha256 "d889c5ace65e03bfab7d96cf0505f8c5caa3862ffba44ac48f4d4e4685757546"
+      url "https://github.com/yarenty/modelmux/releases/download/v1.3.6/modelmux-aarch64-apple-darwin.tar.gz"
+      sha256 "161f7fffa65a1295dce701e6e1cc0cd863d32aed5e525f42c16f56be59528d39"
     end
     on_intel do
-      url "https://github.com/yarenty/modelmux/releases/download/v1.3.5/modelmux-x86_64-apple-darwin.tar.gz"
-      sha256 "e2c62bccb0a8ae0703f0c177c6d3279f2c32fb6cc2db17fe7637234966ea2531"
+      url "https://github.com/yarenty/modelmux/releases/download/v1.3.6/modelmux-x86_64-apple-darwin.tar.gz"
+      sha256 "25c4f903ec8f8211a9b5a2327172d47887856ac5a9ba65c16eca049747753c36"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/yarenty/modelmux/releases/download/v1.3.5/modelmux-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "9d5cae1066db79fe3d52ec3245ee4f63aa6226e3d1e89193689f28b61e5252cb"
+      url "https://github.com/yarenty/modelmux/releases/download/v1.3.6/modelmux-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "984a1d71213d2ce9add7fc2b5b6d50ffeb2da1f9fc4f47d2137331d92a48b9b9"
     end
     on_intel do
-      url "https://github.com/yarenty/modelmux/releases/download/v1.3.5/modelmux-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "488305d4e12f542c8aad020b8a5ac8335f97c2315eb262563c3093d2e57f47d4"
+      url "https://github.com/yarenty/modelmux/releases/download/v1.3.6/modelmux-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "cc8d623b2e55da328dff8a0e059dae633fb1b5292841bf42e4b25fa01fa23aeb"
     end
   end
 
